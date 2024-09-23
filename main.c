@@ -12,29 +12,6 @@
 
 #include "cub3d.h"
 
-void	ft_print_map(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	printf("NO -> (%s)\n", data->no_texture.xpm_file);
-	printf("SO -> (%s)\n", data->so_texture.xpm_file);
-	printf("WE -> (%s)\n", data->we_texture.xpm_file);
-	printf("EA -> (%s)\n", data->ea_texture.xpm_file);
-	printf("F -> (%d, %d, %d)\n", data->floor_color.r, data->floor_color.g, data->floor_color.b);
-	printf("C -> (%d, %d, %d)\n", data->ceiling_color.r, data->ceiling_color.g, data->ceiling_color.b);
-	printf("ceil -> %d\n", data->ceiling_color.rgb);
-	printf("floor -> %d\n", data->floor_color.rgb);
-	printf("MAP\n");
-	while (data->map_2d[i])
-	{
-		printf("(%s)\n", data->map_2d[i]);
-		i++;
-	}
-	printf("Player position: x = %f, y = %f\n", data->player.x, data->player.y);
-	printf("Player angle: %f\n", data->player.angle);
-}
-
 int	ft_close(t_data *data)
 {
 	printf("Closing\n");
@@ -89,7 +66,6 @@ int	main(int ac, char **av)
 	}
 	ft_check_map_file(av, data);
 	ft_retrieve_map(av, data);
-	ft_print_map(data);
 	ft_init_mlx(data);
 	ft_get_xpm_textures(data);
 	mlx_loop_hook(data->mlx, ft_update_render, data);
@@ -97,6 +73,5 @@ int	main(int ac, char **av)
 	mlx_hook(data->win, 3, 10, ft_key_unpress, data);
 	mlx_hook(data->win, 17, 0, ft_close, data);
 	mlx_loop(data->mlx);
-	ft_free_data(data);
-	return (0);
+	return (ft_free_data(data), 0);
 }
