@@ -55,12 +55,7 @@ t_img	*ft_xpm_file_to_image(void *mlx, char *xpm_file, t_data *data)
 		exit(1);
 	}
 	img->img = mlx_xpm_file_to_image(mlx, xpm_file, &img->width, &img->height);
-	printf("Width: %d\n", img->width);
-	printf("Height: %d\n", img->height);
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, \
 	&img->line_length, &img->endian);
-	printf("Bits per pixel: %d\n", img->bits_per_pixel);
-	printf("Line length: %d\n", img->line_length);
-	printf("Endian: %d\n", img->endian);
 	return (img);
 }
