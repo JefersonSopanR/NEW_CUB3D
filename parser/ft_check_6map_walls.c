@@ -31,6 +31,54 @@ int	ft_check_map_walls(char *map, int *i)
 	return (0);
 }
 
+void	ft_write_space_error(void)
+{
+	ft_putstr_fd("Error\nThe map is divided with space", 2);
+	ft_putchar_fd('\n', 2);
+	return ;
+}
+
+int	ft_spaces_detector(char **map_2d, int j)
+{
+	int	y;
+
+	y = 0;
+	while (map_2d[y])
+	{
+		if (!ft_strchr("012NWES", map_2d[y][j]))
+			return (1);
+		y++;
+	}
+	return (0);
+}
+
+int	ft_check_map_free_spaces(char **map_2d)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (map_2d[i])
+	{
+		j = 0;
+		while (map_2d[i][j])
+		{
+			if (map_2d[i][j] == '2')
+			{
+				if (ft_spaces_detector(map_2d, j))
+				{
+					ft_write_space_error();
+					return (free_split(map_2d), 1);
+				}
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
 int	ft_check_map_surroenders(char *map_line)
 {
 	char	**map_2d;
@@ -40,7 +88,7 @@ int	ft_check_map_surroenders(char *map_line)
 	row = 0;
 	col = 0;
 	map_2d = ft_especial_split(map_line);
-	if (!map_2d)
+	if (!map_2d || ft_check_map_free_spaces(map_2d))
 		return (1);
 	while (map_2d[row])
 	{
@@ -57,25 +105,4 @@ int	ft_check_map_surroenders(char *map_line)
 		row++;
 	}
 	return (free_split(map_2d), 0);
-}
-
-int	ft_check_zeros(char **map_2d, int y, int x)
-{
-	int	exit_code;
-
-	exit_code = 0;
-	if (!ft_strchr("NSEW01", map_2d[y + 1][x]))
-		exit_code = 1;
-	if (!ft_strchr("NSEW01", map_2d[y - 1][x]))
-		exit_code = 1;
-	if (!ft_strchr("NSEW01", map_2d[y][x + 1]))
-		exit_code = 1;
-	if (!ft_strchr("NSEW10", map_2d[y][x - 1]))
-		exit_code = 1;
-	if (exit_code)
-	{
-		ft_write_map_err("Map should be surrounded by walls");
-		free_split(map_2d);
-	}
-	return (exit_code);
 }
