@@ -25,11 +25,20 @@ static	double	get_player_angle(char direction)
 	double	angle;
 
 	if (direction == 'E')
+	{
 		angle = 0;
+		return (angle);
+	}
 	else if (direction == 'N')
+	{
 		angle = PI * 0.5;
+		return (angle);
+	}
 	else if (direction == 'W')
+	{
 		angle = PI;
+		return (angle);
+	}
 	angle = PI * 1.5;
 	return (angle);
 }
