@@ -12,6 +12,17 @@
 
 #include "cub3d.h"
 
+int	ft_check_map_begining(char *map, int i)
+{
+	while (map[i] && map[i] != '\n')
+	{
+		if (map[i] == '0' || map[i] == '1')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 t_err_type	ft_check_elements(char *map)
 {
 	t_identifier	id;
@@ -21,17 +32,17 @@ t_err_type	ft_check_elements(char *map)
 	i = 0;
 	while (map[i] && !id.checker && !id.dup)
 	{
-		if (map[i] == '\n' || ft_isspace(map[i]))
-			i++;
-		else if (!ft_strncmp(&map[i], "NO ", 3) \
+		if (!ft_strncmp(&map[i], "NO ", 3) \
 		|| !ft_strncmp(&map[i], "SO ", 3) \
 		|| !ft_strncmp(&map[i], "WE ", 3) \
 		|| !ft_strncmp(&map[i], "EA ", 3) \
 		|| !ft_strncmp(&map[i], "F ", 2) \
 		|| !ft_strncmp(&map[i], "C ", 2))
 			id.checker = ft_check_identifier(map, &i, &id);
-		else if (map[i] == '1' || map[i] == '0')
+		else if (ft_check_map_begining(map, i))
 			break ;
+		else if (map[i] == '\n' || ft_isspace(map[i]))
+			i++;
 		else
 			id.checker = E_WRONG_ELEM;
 	}
@@ -98,6 +109,11 @@ int	ft_count_elements(t_identifier *id, char *map, int *i)
 		return (1);
 	}
 	if (ft_check_map_walls(map, i))
+	{
+		id->checker = E_MAP;
+		return (1);
+	}
+	if (ft_check_map_player(map, i))
 	{
 		id->checker = E_MAP;
 		return (1);

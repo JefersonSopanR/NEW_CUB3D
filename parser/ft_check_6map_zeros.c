@@ -27,7 +27,7 @@ int	ft_check_zeros(char **map_2d, int y, int x)
 		exit_code = 1;
 	if (exit_code)
 	{
-		ft_write_map_err("Map should be surrounded by walls");
+		ft_write_map_err("Map should be surrounded by walls1");
 		free_split(map_2d);
 	}
 	return (exit_code);

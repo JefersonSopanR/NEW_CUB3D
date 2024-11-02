@@ -42,7 +42,7 @@ void	ft_exit(char *msg, char *map, t_err_type type_error, t_data *data)
 
 void	ft_write_map_err(char *err_msg)
 {
-	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd("\e[31mError\n\e[0m", 2);
 	ft_putstr_fd(err_msg, 2);
-	ft_putchar_fd('\n', 2);
+	ft_putstr_fd("\n", 2);
 }

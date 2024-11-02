@@ -158,6 +158,8 @@ typedef struct s_data
 //ft_check_1map_file.c
 void		ft_check_map_file(char **av, t_data *data);
 char		*ft_read_file(char *file, t_data *data);
+int			ft_check_map_player(char *map, int *i);
+int			ft_verify_player_surroundings(char **map_split);
 //
 //ft_check_2elements.c
 //

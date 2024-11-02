@@ -62,3 +62,50 @@ char	*ft_read_file(char *file, t_data *data)
 		ft_exit("Map is empty\n", map_line, 0, data);
 	return (map_line);
 }
+
+int	ft_verify_player_surroundings(char **map_split)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	x = 0;
+	while (map_split[y])
+	{
+		x = 0;
+		while (map_split[y][x])
+		{
+			if (ft_strchr("NSEW", map_split[y][x]))
+			{
+				if (map_split[y][x + 1] == ' ' || map_split[y][x - 1] == ' ' || \
+					map_split[y + 1][x] == ' ' || map_split[y - 1][x] == ' ')
+					return (1);
+			}
+			x++;
+		}
+		y++;
+	}
+	return (0);
+}
+
+int	ft_check_map_player(char *map, int *i)
+{
+	int		j;
+	char	**map_split;
+	int		y;
+	int		x;
+
+	j = *i;
+	y = 0;
+	x = 0;
+	map_split = ft_split(&map[j], '\n');
+	if (!map_split)
+		return (1);
+	if (ft_verify_player_surroundings(map_split))
+	{
+		free_split(map_split);
+		ft_write_map_err("The player shouldn't be surround by empty space");
+		return (1);
+	}
+	return (free_split(map_split), 0);
+}

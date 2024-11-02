@@ -74,8 +74,8 @@ char	**ft_fill_map_with_doces(char **split, int i, int max_len)
 	filler = ft_calloc(i + 1, sizeof(char *));
 	if (!filler)
 		return (NULL);
-	i = 0;
-	while (split[i])
+	i = -1;
+	while (split[++i])
 	{
 		filler[i] = ft_calloc(max_len + 1, sizeof(char));
 		if (!filler[i])
@@ -83,12 +83,7 @@ char	**ft_fill_map_with_doces(char **split, int i, int max_len)
 		len = ft_strlen(split[i]);
 		ft_strlcpy(filler[i], split[i], len + 1);
 		while (len < max_len)
-		{
-			filler[i][len] = '2';
-			len++;
-		}
-		i++;
+			filler[i][len++] = '2';
 	}
-	i = 0;
 	return (filler);
 }
