@@ -1,10 +1,10 @@
-SO    textures/J_AND_K_NY_POLICE-SO.xpm
+SO    textures/Wall1.xpm
 
-WE    textures/horse_games-WE.xpm
+WE    textures/Wall2.xpm
 
-NO    textures/miguel-focusing-NO.xpm
+NO    textures/Wall3.xpm
 
-EA   textures/firts_day_of_the_year_of_college-EA.xpm
+EA   textures/Wall4.xpm
 
 
 F  140, 139, 139
@@ -17,7 +17,7 @@ C 154, 210,   230
 11111111111111111          11111111111111111
 10000010000000001          10000000000000001
 10000100000010001          10000011110000001
-100000000000E1001          10000000000000001
+100000000000S1001          10000000000000001
 11111111110000011111111111100000111111111111
          1000000000000000000000001
          1000000000000000000010001
