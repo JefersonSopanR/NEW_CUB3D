@@ -25,7 +25,6 @@ int	ft_check_map_walls(char *map, int *i)
 	map_line = ft_substr(map, start, end - start);
 	if (!map_line)
 		return (1);
-	printf("MapLine\n%s\nFinish\n", map_line);
 	if (ft_check_map_surroenders(map_line))
 		return (free(map_line), 1);
 	free(map_line);
