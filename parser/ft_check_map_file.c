@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_1map_file.c                               :+:      :+:    :+:   */
+/*   ft_check_map_file.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jesopan- <jesopan-@student.42malaga.com>   #+#  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -92,12 +92,8 @@ int	ft_check_map_player(char *map, int *i)
 {
 	int		j;
 	char	**map_split;
-	int		y;
-	int		x;
 
 	j = *i;
-	y = 0;
-	x = 0;
 	map_split = ft_split(&map[j], '\n');
 	if (!map_split)
 		return (1);
